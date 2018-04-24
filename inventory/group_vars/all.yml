@@ -1,0 +1,16 @@
+---
+# Use correct python2.7 interpeter
+ansible_python_interpreter: "/usr/bin/python2.7"
+
+odoo_user: odoo
+database_name: odoo
+
+# Nginx configuration
+nginx_configs:
+
+nginx_sites:
+  odoo:
+    - |
+      listen 80;
+      server_name {{ inventory_hostname }};
+      rewrite ^(.*)$ https://$host$1 permanent;
